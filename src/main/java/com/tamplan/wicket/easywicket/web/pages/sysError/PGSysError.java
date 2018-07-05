@@ -1,4 +1,4 @@
-package com.tamplan.wicket.easywicket.web.pages.sysError;
+package com.tamplan.wicket.easywicket.web.pages.syserror;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 

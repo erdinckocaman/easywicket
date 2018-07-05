@@ -1,4 +1,4 @@
-package com.tamplan.wicket.easywicket.web.pages.pageExpired;
+package com.tamplan.wicket.easywicket.web.pages.pageexpired;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 

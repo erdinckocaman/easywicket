@@ -1,4 +1,4 @@
-package com.tamplan.wicket.easywicket.web.pages.newUser;
+package com.tamplan.wicket.easywicket.web.pages.newuser;
 
 import java.util.Arrays;
 import java.util.List;

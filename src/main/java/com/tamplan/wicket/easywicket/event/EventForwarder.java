@@ -8,6 +8,7 @@ public class EventForwarder implements Serializable{
 
 	public void forwardEvent(IEventSource src, Class<? extends IEvent<?>> eventType, final IEventSource target) {
 		src.addEventLink(eventType, new Serializable() {
+			
 			private static final long serialVersionUID = 1L;
 
 			@SuppressWarnings("unused")
@@ -16,6 +17,5 @@ public class EventForwarder implements Serializable{
 			}
 		});
 	}
-	
 	 
 }

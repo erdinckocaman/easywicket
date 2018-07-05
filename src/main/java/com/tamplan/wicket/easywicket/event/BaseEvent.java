@@ -1,6 +1,5 @@
 package com.tamplan.wicket.easywicket.event;
 
-
 public abstract class BaseEvent<T> implements IEvent<T> {
 	
 	private T source;
@@ -17,7 +16,6 @@ public abstract class BaseEvent<T> implements IEvent<T> {
 	public String toString() {
 		return "[source=" + source + "]";
 	}
-	
 	
 	public T getSource() {
 		return source;

@@ -14,27 +14,21 @@ public class ImageButtonWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, final EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
-		ImageButton btn = new ImageButton(widgetId,  new Model<String>("")) {
+
+		return new ImageButton(widgetId, new Model<String>("")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onSubmit() {
-				if ( !Strings.isEmpty(annot.action())) {
+				if (!Strings.isEmpty(annot.action())) {
 					util.callAction(util.findContainer(this), annot.action());
 				}
-				
+
 			}
-			
-			
+
 		};
-		
-		
-		return btn;
-		
 	}
 
 }

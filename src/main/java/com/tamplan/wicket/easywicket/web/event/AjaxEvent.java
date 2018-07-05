@@ -9,14 +9,14 @@ public abstract class AjaxEvent extends WicketEvent {
 
 	public AjaxEvent(Component source, AjaxRequestTarget requestTarget) {
 		super(source);
-		
-		if ( requestTarget == null ) {
+
+		if (requestTarget == null) {
 			throw new IllegalArgumentException("Ajax request is null !");
 		}
-		
+
 		this.requestTarget = requestTarget;
 	}
-	
+
 	public AjaxRequestTarget getRequestTarget() {
 		return requestTarget;
 	}

@@ -14,42 +14,26 @@ public class TextFieldWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, final EasyWicket annot, MarkupContainer parentWidget) {		
-		
-		TextField<Void> txt = new TextField<Void>(widgetId) {
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
+			MarkupContainer parentWidget) {
+
+		return new TextField<Void>(widgetId) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public boolean isEnabled() {
-				
+
 				String enabled = annot.enabled();
-				
-				if ( !Strings.isEmpty(enabled)) {
+
+				if (!Strings.isEmpty(enabled)) {
 					IEasyWicketContainer container = util.findContainer(this);
 					return (Boolean) util.getValue(container, enabled);
-				}
-				else {
+				} else {
 					return super.isEnabled();
 				}
 			}
-			
-//			@Override
-//			public void validate() {
-//				String validated = annot.validated();
-//				boolean val = true;
-//				
-//				if ( !Strings.isEmpty(validated) ) {
-//					IEasyWicketContainer container = util.findContainer(this);
-//					val = (Boolean) util.getValue(container, validated);
-//				}
-//				if ( val ) {
-//					super.validate();
-//				}
-//			}
+
 		};
-		
-		return txt;
 	}
 
 }

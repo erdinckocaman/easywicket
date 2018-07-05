@@ -14,20 +14,17 @@ public class EventSource implements IEventSource, Serializable{
 	
 	// eventsource can take a parameterized type T which is source of the event
 	
-	public EventSource() {
-	}
-
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Object target) {
+	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
 		addEventLink(eventType, target, "processEvent");
 	}
 
-
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Object target, String method) {
+	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target, String method) {
 		if (eventLinks == null)
-			eventLinks = new ArrayList<EventLinkRecord>();
+			eventLinks = new ArrayList<>();
 		
 		EventLinkRecord rec = new EventLinkRecord(eventType);
 		rec.addLink(target, method);
+		
 		eventLinks.add(rec);
 	}
 
@@ -36,18 +33,18 @@ public class EventSource implements IEventSource, Serializable{
 			return;
 		
 		for (int i = 0; i < eventLinks.size(); i++){
-			EventLinkRecord rec = (EventLinkRecord) eventLinks.get(i);
+			EventLinkRecord rec = eventLinks.get(i);
 			if (rec.getEventType().isInstance(event))
 				rec.dispatchEvent(event);
 		}
 	}
 
-	public void removeEventLink(Class<? extends IEvent<?>> eventType, Object target) {
+	public void removeEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
 		if (eventLinks == null)
 			return;
 		
 		for (int i = 0; i < eventLinks.size(); i++){
-			EventLinkRecord rec = (EventLinkRecord) eventLinks.get(i);
+			EventLinkRecord rec = eventLinks.get(i);
 			
 			if (rec.getEventType() == eventType){
 				rec.removeLink(target);
@@ -55,6 +52,4 @@ public class EventSource implements IEventSource, Serializable{
 			}
 		}
 	}
-
-	
 }

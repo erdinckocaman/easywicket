@@ -13,31 +13,28 @@ public class LinkWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, final EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
-		Link<Void> lnk = new Link<Void>(widgetId) {
+
+		return new Link<Void>(widgetId) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onClick() {
-				if ( !Strings.isEmpty(annot.action())) {
+				if (!Strings.isEmpty(annot.action())) {
 					util.callAction(util.findContainer(this), annot.action());
 				}
-				
+
 			}
-				
+
 			@Override
 			protected void onConfigure() {
 				super.onConfigure();
-				
+
 				util.configureComponent(this, annot.visible(), annot.enabled());
 			}
-			
+
 		};
-		
-		return lnk;
 	}
 
 }

@@ -11,10 +11,9 @@ public class CheckGroupWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
+
 		return util.createInstance(widgetClass, widgetId);
 	}
 

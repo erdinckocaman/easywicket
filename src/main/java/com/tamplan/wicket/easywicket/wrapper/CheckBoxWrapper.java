@@ -11,14 +11,11 @@ public class CheckBoxWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, final EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
-		//return util.createInstance(widgetClass, widgetId);
-		
-		CheckBox checkBox = new CheckBox(widgetId) {
-			
+
+		return new CheckBox(widgetId) {
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -26,8 +23,6 @@ public class CheckBoxWrapper extends BaseWrapper {
 				util.configureComponent(this, annot.visible(), annot.enabled());
 			}
 		};
-		
-		return checkBox;
 	}
 
 }

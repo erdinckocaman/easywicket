@@ -12,12 +12,11 @@ public class DateTextFieldWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
+
 		DateTextField txt = (DateTextField) util.createInstance(widgetClass, widgetId);
-		txt.add(new DatePicker());
+		//txt.add(new DatePicker());
 		return txt;
 	}
 

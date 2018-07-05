@@ -1,11 +1,12 @@
-package net.sourceforge.easywicket.web.pages.pageExpired;
-
-import net.sourceforge.easywicket.web.common.EasyPage;
+package com.tamplan.wicket.easywicket.web.pages.pageExpired;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
+import com.tamplan.wicket.easywicket.web.common.EasyPage;
 
 public class PGPageExpired extends EasyPage {
+
+	private static final long serialVersionUID = 1L;
 
 	public PGPageExpired() {
 		add(new BookmarkablePageLink("lnkHomePage", getApplication().getHomePage()));

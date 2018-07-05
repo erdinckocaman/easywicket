@@ -16,26 +16,23 @@ public class AjaxLinkWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, final EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
-		AjaxLink<Void> lnk = new AjaxLink<Void>(widgetId) {
+
+		return new AjaxLink<Void>(widgetId) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				if ( !Strings.isEmpty(annot.action())) {
+				if (!Strings.isEmpty(annot.action())) {
 					WidgetContext ctx = new WidgetContext();
 					ctx.setAjaxRequestTarget(target);
 					IEasyWicketContainer container = util.findContainer(this);
 					container.setCurrentWidgetContext(ctx);
-					
+
 					util.callAction(util.findContainer(this), annot.action());
 				}
 			}
 		};
-		return lnk;
 	}
-
 }

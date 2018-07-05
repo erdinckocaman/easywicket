@@ -6,8 +6,5 @@ public class FormOnValidateEvent extends WicketEvent {
 
 	public FormOnValidateEvent(Component source) {
 		super(source);
-		
 	}
-	
-
 }

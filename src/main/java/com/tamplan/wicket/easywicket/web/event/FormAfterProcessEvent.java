@@ -9,9 +9,9 @@ public class FormAfterProcessEvent extends WicketEvent {
 
 	public FormAfterProcessEvent(Component source, IFormSubmitter formSubmitter) {
 		super(source);
-		
+
 		this.formSubmitter = formSubmitter;
-		
+
 	}
 
 	public IFormSubmitter getFormSubmitter() {

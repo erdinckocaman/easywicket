@@ -1,9 +1,7 @@
-package net.sourceforge.easywicket.web;
+package com.tamplan.wicket.easywicket.web;
 
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
-
-
 
 public class WebProjectTemplate1Session extends WebSession {
 

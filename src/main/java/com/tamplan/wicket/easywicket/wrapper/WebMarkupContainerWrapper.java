@@ -12,12 +12,11 @@ public class WebMarkupContainerWrapper extends BaseWrapper {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected Component createInstance(String widgetId,
-			Class<? extends Component> widgetClass, final EasyWicket annot,
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
 			MarkupContainer parentWidget) {
-		
-		WebMarkupContainer container = new WebMarkupContainer(widgetId) {
-			
+
+		return new WebMarkupContainer(widgetId) {
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -26,7 +25,6 @@ public class WebMarkupContainerWrapper extends BaseWrapper {
 			}
 
 		};
-		return container;
 	}
 
 }

@@ -17,28 +17,20 @@ import com.tamplan.wicket.easywicket.EasyWicketUtil;
 import com.tamplan.wicket.easywicket.IEasyWicketContainer;
 
 public class DataTableWrapper extends BaseWrapper {
-	
+
 	private static final long serialVersionUID = 1L;
 	private EasyWicketUtil util;
-	
+
 	public DataTableWrapper() {
 		util = EasyWicketUtil.getInstance();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass,
-			final EasyWicket annot, final MarkupContainer parentWidget) {
+	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
+			final MarkupContainer parentWidget) {
 
-		
-		DefaultDataTable dataTable = new DefaultDataTable(widgetId, 
-				getColumnList(annot, parentWidget), 
-				new SortableDataProvider() {
-
-			public Iterator iterator(int first, int count) {
-				List list = getList(annot, parentWidget);
-				return list.subList(first, first + count).iterator();
-			}
+		return new DefaultDataTable(widgetId, getColumnList(annot, parentWidget), new SortableDataProvider() {
 
 			public IModel model(final Object object) {
 				return new LoadableDetachableModel() {
@@ -47,35 +39,41 @@ public class DataTableWrapper extends BaseWrapper {
 					protected Object load() {
 						return object;
 					}
-					
+
 				};
 			}
 
-			public int size() {
+			@Override
+			public Iterator iterator(long first, long count) {
 				List list = getList(annot, parentWidget);
-				if ( list == null ) {
+				return list.subList((int) first, (int) (first + count)).iterator();
+			}
+
+			@Override
+			public long size() {
+				List list = getList(annot, parentWidget);
+				if (list == null) {
 					return 0;
-				}else {
+				} else {
 					return list.size();
 				}
 			}
-			
+
 		}, getRowsPerPage(annot, parentWidget)) {
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isVisible() {
-				if ( !Strings.isEmpty(annot.visible())) {
+				if (!Strings.isEmpty(annot.visible())) {
 					String visibleStr = annot.visible();
 					IEasyWicketContainer container = util.findContainer(this);
 					return (Boolean) util.getValue(container, visibleStr);
-				}else {
+				} else {
 					return super.isVisible();
 				}
 			}
 		};
-		
-		return dataTable;
-	}
-	
 
+	}
 
 }

@@ -54,31 +54,27 @@ import com.tamplan.wicket.easywicket.wrapper.TextAreaWrapper;
 import com.tamplan.wicket.easywicket.wrapper.TextFieldWrapper;
 import com.tamplan.wicket.easywicket.wrapper.WebMarkupContainerWrapper;
 
-
-
 public class EasyWicketFactory {
 
 	private static EasyWicketFactory instance;
-	
 
 	private Map<Class<? extends Component>, Class<? extends IEasyWicketWrapper>> wrapperMap;
 
-
 	private EasyWicketUtil util;
-	
+
 	private EasyWicketFactory() {
 		util = EasyWicketUtil.getInstance();
 		wrapperMap = new HashMap<Class<? extends Component>, Class<? extends IEasyWicketWrapper>>();
-		
+
 		registerWrapper(Label.class, LabelWrapper.class);
 		registerWrapper(Form.class, FormWrapper.class);
 		registerWrapper(Button.class, ButtonWrapper.class);
 		registerWrapper(TextField.class, TextFieldWrapper.class);
 		registerWrapper(PasswordTextField.class, PasswordTextFieldWrapper.class);
-		
+
 		registerWrapper(DataTable.class, DataTableWrapper.class);
 		registerWrapper(DefaultDataTable.class, DataTableWrapper.class);
-		
+
 		registerWrapper(DropDownChoice.class, DropDownChoiceWrapper.class);
 		registerWrapper(Link.class, LinkWrapper.class);
 		registerWrapper(AjaxLink.class, AjaxLinkWrapper.class);
@@ -93,68 +89,53 @@ public class EasyWicketFactory {
 		registerWrapper(DateTextField.class, DateTextFieldWrapper.class);
 		registerWrapper(ImageButton.class, ImageButtonWrapper.class);
 		registerWrapper(ListChoice.class, ListChoiceWrapper.class);
-		
+
 		registerWrapper(WebMarkupContainer.class, WebMarkupContainerWrapper.class);
 		registerWrapper(FileUploadField.class, FileUploadFieldWrapper.class);
 		registerWrapper(AjaxSubmitLink.class, AjaxSubmitLinkWrapper.class);
 	}
-	
+
 	public static EasyWicketFactory getInstance() {
-		if ( instance == null ) {
+		if (instance == null) {
 			instance = new EasyWicketFactory();
 		}
-		
+
 		return instance;
 	}
-	
-	public <T extends Component> T createWidget(String widgetId, Class<T> widgetClass, 
-			EasyWicket annot, MarkupContainer parentWidget) {
-		
-		if ( IEasyWicket.class.isAssignableFrom(widgetClass)) {
+
+	public <T extends Component> T createWidget(String widgetId, Class<T> widgetClass, EasyWicket annot,
+			MarkupContainer parentWidget) {
+
+		if (IEasyWicket.class.isAssignableFrom(widgetClass)) {
 			IEasyWicket wicket = (IEasyWicket) util.createInstance(widgetClass, widgetId);
 			wicket.initComponent(annot, parentWidget);
-			
-			return (T)wicket;
-		}else {
-		
-		
+
+			return (T) wicket;
+		} else {
+
 			Class<? extends IEasyWicketWrapper> wrapperFound = wrapperMap.get(widgetClass);
-			
-//			if ( wrapperFound == null ) {
-//				for( Map.Entry<Class<? extends Component>, Class<? extends IEasyWicketWrapper>> entry: wrapperMap.entrySet()) {
-////					if ( entry.getKey().isAssignableFrom(widgetClass)) {
-////						wrapperFound = entry.getValue();
-////					}
-//					
-//					if ( widgetClass.isAssignableFrom(entry.getKey())) {
-//						wrapperFound = entry.getValue();
-//					}
-//				}
-//				
-//			}
-			
-			if ( wrapperFound != null ) {
+
+			if (wrapperFound != null) {
 				return createWidget(widgetId, widgetClass, annot, wrapperFound, parentWidget);
-			}else {
-				throw new IllegalStateException("no widget found for widget class=" + widgetClass + " annot=" +annot);
+			} else {
+				throw new IllegalStateException("no widget found for widget class=" + widgetClass + " annot=" + annot);
 			}
 		}
 	}
-	
-	private <T extends Component> T createWidget(String widgetId, Class<T> widgetClass, 
-			EasyWicket annot, Class<? extends IEasyWicketWrapper> wrapperClazz, MarkupContainer parentWidget) {
+
+	private <T extends Component> T createWidget(String widgetId, Class<T> widgetClass, EasyWicket annot,
+			Class<? extends IEasyWicketWrapper> wrapperClazz, MarkupContainer parentWidget) {
 		try {
 			IEasyWicketWrapper wrapper = wrapperClazz.newInstance();
-			return(T)wrapper.create(widgetId, widgetClass, annot, parentWidget);
+			return (T) wrapper.create(widgetId, widgetClass, annot, parentWidget);
 		} catch (InstantiationException e) {
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public void registerWrapper(Class<? extends Component> component, 
-			Class<? extends IEasyWicketWrapper> wrapper) {
+
+	public void registerWrapper(Class<? extends Component> component, Class<? extends IEasyWicketWrapper> wrapper) {
 		wrapperMap.put(component, wrapper);
 	}
 }

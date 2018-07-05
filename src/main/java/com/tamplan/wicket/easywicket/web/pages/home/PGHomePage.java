@@ -1,12 +1,7 @@
-package net.sourceforge.easywicket.web.pages.home;
+package com.tamplan.wicket.easywicket.web.pages.home;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import net.sourceforge.easywicket.EasyWicket;
-import net.sourceforge.easywicket.IEasyWicketContainer;
-import net.sourceforge.easywicket.WidgetContext;
-import net.sourceforge.easywicket.web.common.EasyPage;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -14,6 +9,11 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+
+import com.tamplan.wicket.easywicket.EasyWicket;
+import com.tamplan.wicket.easywicket.IEasyWicketContainer;
+import com.tamplan.wicket.easywicket.WidgetContext;
+import com.tamplan.wicket.easywicket.web.common.EasyPage;
 
 
 public class PGHomePage extends EasyPage implements IEasyWicketContainer{

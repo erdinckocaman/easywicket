@@ -1,0 +1,57 @@
+package net.sourceforge.easywicket.web.pages.newUser;
+
+import java.util.Arrays;
+import java.util.List;
+
+import net.sourceforge.easywicket.EasyWicket;
+import net.sourceforge.easywicket.IEasyWicketContainer;
+import net.sourceforge.easywicket.WidgetContext;
+
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class PGNewUser extends WebPage implements IEasyWicketContainer{
+
+	@EasyWicket(id="form")
+	Form<Void> form;
+	
+	@EasyWicket(id="form.txtName", value="name")
+	TextField<String> txtName;
+	
+	@EasyWicket(id="form.txtSurname", value="surname")
+	TextField<String> txtSurname;
+	
+	@EasyWicket(id="form.countrySelection", value="selectedCountry", 
+			list="countryList", idProperty="name", displayProperty="name")
+	DropDownChoice<Country> countrySelection;
+	
+	@EasyWicket(id="form.btnSubmit", action="actionSubmit")
+	Button btnSubmit;
+
+	
+	private static Logger logger = LoggerFactory.getLogger(PGNewUser.class);
+	private List<Country> countryList;
+	private Country selectedCountry;
+	private String name, surname;
+	
+	
+	public void initValues() {
+		countryList = Arrays.asList(Country.values());
+		selectedCountry = countryList.get(0);
+	}
+	
+	public void pack() {
+	}
+	
+	public void setCurrentWidgetContext(WidgetContext widgetContext) {
+	}
+	 
+	public void actionSubmit() {
+		logger.info("name=" + name + " surname=" + surname + " selected country=" + selectedCountry);
+	}
+}

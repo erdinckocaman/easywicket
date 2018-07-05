@@ -33,7 +33,6 @@ public class LoginComponent extends EasyPanel {
 
 	public LoginComponent(String id) {
 		super(id);
-
 	}
 
 	public void actionLogin() {

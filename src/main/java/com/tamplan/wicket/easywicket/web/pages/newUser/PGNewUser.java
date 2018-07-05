@@ -51,6 +51,6 @@ public class PGNewUser extends WebPage implements IEasyWicketContainer {
 	}
 
 	public void actionSubmit() {
-		logger.info("name=" + name + " surname=" + surname + " selected country=" + selectedCountry);
+		logger.info("name={} surname={}, selected country={}", name, surname, selectedCountry);
 	}
 }

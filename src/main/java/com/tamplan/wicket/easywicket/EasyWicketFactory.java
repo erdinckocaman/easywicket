@@ -128,9 +128,7 @@ public class EasyWicketFactory {
 		try {
 			IEasyWicketWrapper wrapper = wrapperClazz.newInstance();
 			return (T) wrapper.create(widgetId, widgetClass, annot, parentWidget);
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

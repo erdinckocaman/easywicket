@@ -66,9 +66,8 @@ public class EasyWicketComponentListener implements IComponentInstantiationListe
 
 	private FieldInfo getFieldInfo(Field field, EasyWicket annot) {
 		Class<?> type = field.getType();
-		if (logger.isInfoEnabled()) {
-			logger.info("field name=" + field.getName() + " type=" + type);
-		}
+		
+		logger.info("field name={}, type={}", field.getName(), type);
 
 		FieldInfo fi = new FieldInfo();
 		fi.annot = annot;
@@ -119,9 +118,7 @@ public class EasyWicketComponentListener implements IComponentInstantiationListe
 		try {
 			fi.field.setAccessible(true);
 			fi.field.set(rootContainer, widget);
-		} catch (IllegalArgumentException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -148,21 +145,6 @@ public class EasyWicketComponentListener implements IComponentInstantiationListe
 		String parentId = annotationId.substring(0, annotationId.length() - widgetId.length() - 1);
 
 		return parentId;
-	}
-
-	public static void main(String[] args) {
-		EasyWicketComponentListener listener = new EasyWicketComponentListener();
-		String annotationId = "form.name";
-		String widgetId = listener.extractWidgetId(annotationId);
-		String parentId = listener.extractParentId(annotationId, widgetId);
-		System.out.println(widgetId);
-		System.out.println(parentId);
-
-		annotationId = "form";
-		widgetId = listener.extractWidgetId(annotationId);
-		parentId = listener.extractParentId(annotationId, widgetId);
-		System.out.println(widgetId);
-		System.out.println(parentId);
 	}
 
 }

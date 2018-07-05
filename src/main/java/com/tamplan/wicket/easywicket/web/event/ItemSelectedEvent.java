@@ -5,8 +5,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 
 public class ItemSelectedEvent<T> extends AbstractItemSelectionEvent<T> {
 
-	public ItemSelectedEvent(Component source, AjaxRequestTarget requestTarget,
-			T targetItem) {
+	public ItemSelectedEvent(Component source, AjaxRequestTarget requestTarget, T targetItem) {
 		super(source, requestTarget, targetItem);
 	}
 }

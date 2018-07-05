@@ -119,9 +119,7 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 		try {
 			fi.field.setAccessible(true);
 			fi.field.set(rootContainer, widget);
-		} catch (IllegalArgumentException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -144,9 +142,6 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 		if (widgetId.equals(annotationId)) {
 			return null;
 		}
-
-		String parentId = annotationId.substring(0, annotationId.length() - widgetId.length() - 1);
-
-		return parentId;
+		return annotationId.substring(0, annotationId.length() - widgetId.length() - 1);
 	}
 }

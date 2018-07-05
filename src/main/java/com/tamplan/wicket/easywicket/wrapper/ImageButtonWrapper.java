@@ -25,10 +25,7 @@ public class ImageButtonWrapper extends BaseWrapper {
 				if (!Strings.isEmpty(annot.action())) {
 					util.callAction(util.findContainer(this), annot.action());
 				}
-
 			}
-
 		};
 	}
-
 }

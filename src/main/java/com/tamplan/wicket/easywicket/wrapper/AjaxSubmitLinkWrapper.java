@@ -37,8 +37,6 @@ public class AjaxSubmitLinkWrapper extends BaseWrapper {
 
 				send(WebApplication.get(), Broadcast.EXACT, event);
 			}
-
 		};
 	}
-
 }

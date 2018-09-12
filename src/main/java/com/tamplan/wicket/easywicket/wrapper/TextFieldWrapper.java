@@ -3,11 +3,9 @@ package com.tamplan.wicket.easywicket.wrapper;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.util.string.Strings;
 
 import com.tamplan.wicket.easywicket.BaseWrapper;
 import com.tamplan.wicket.easywicket.EasyWicket;
-import com.tamplan.wicket.easywicket.IEasyWicketContainer;
 
 public class TextFieldWrapper extends BaseWrapper {
 
@@ -20,17 +18,11 @@ public class TextFieldWrapper extends BaseWrapper {
 		return new TextField<Void>(widgetId) {
 			private static final long serialVersionUID = 1L;
 
-			@Override
-			public boolean isEnabled() {
-
-				String enabled = annot.enabled();
-
-				if (!Strings.isEmpty(enabled)) {
-					IEasyWicketContainer container = util.findContainer(this);
-					return (Boolean) util.getValue(container, enabled);
-				} else {
-					return super.isEnabled();
-				}
+			 @Override
+			protected void onConfigure() {
+				super.onConfigure();
+				
+				util.configureComponent(this, annot.visible(), annot.enabled());
 			}
 
 		};

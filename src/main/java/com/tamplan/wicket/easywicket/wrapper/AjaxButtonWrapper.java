@@ -21,7 +21,7 @@ public class AjaxButtonWrapper extends BaseWrapper {
 
 		private static final long serialVersionUID = 1L;
 		private EasyWicket annot;
-		private final static EasyWicketUtil util;
+		private static final EasyWicketUtil util;
 		static {
 			util = EasyWicketUtil.getInstance();
 		}

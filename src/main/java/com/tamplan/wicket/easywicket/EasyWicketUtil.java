@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.core.util.lang.PropertyResolver;
 import org.apache.wicket.markup.html.form.FormComponent;
 
@@ -76,7 +77,7 @@ public class EasyWicketUtil implements Serializable {
 		throw new IllegalStateException("no value found for object=" + object + " expression=" + expression);
 	}
 
-	public Object getContainerValue(Component component, String expression) {
+	public <T> T getContainerValue(Component component, String expression) {
 		if (component instanceof IEasyWicketContainer) {
 			return getValue(component, expression);
 		} else {
@@ -104,14 +105,27 @@ public class EasyWicketUtil implements Serializable {
 	public IEasyWicketContainer findContainer(Component component) {
 		return component.findParent(IEasyWicketContainer.class);
 	}
+	
+	public int getRowsPerPage(EasyWicket annot, MarkupContainer parentWidget) {
+		String rowsPerPage = annot.rowsPerPage();
+		
+		if (rowsPerPage == null || rowsPerPage.length() == 0) {
+			rowsPerPage = "10";
+		}
+		if (isNumeric(rowsPerPage)) {
+			return new Integer(rowsPerPage);
+		} else {
+			return (Integer) getContainerValue(parentWidget, rowsPerPage);
+		}
+	}
 
-	public boolean isNumeric(String str) {
+	private boolean isNumeric(String str) {
 		if (str == null) {
 			return false;
 		}
 		int sz = str.length();
 		for (int i = 0; i < sz; i++) {
-			if (Character.isDigit(str.charAt(i)) == false) {
+			if (!Character.isDigit(str.charAt(i))) {
 				return false;
 			}
 		}

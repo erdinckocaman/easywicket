@@ -10,6 +10,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	protected EasyWicketUtil util;
 
 	public BaseWrapper() {
@@ -18,6 +19,7 @@ public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 
 	public final Component create(String widgetId, Class<? extends Component> widgetClass, EasyWicket annot,
 			MarkupContainer parentWidget) {
+		
 		Component component = createInstance(widgetId, widgetClass, annot, parentWidget);
 
 		util.initComponentWithAnnot(component, annot);
@@ -35,15 +37,7 @@ public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 	}
 
 	protected int getRowsPerPage(EasyWicket annot, MarkupContainer parentWidget) {
-		String rowsPerPage = annot.rowsPerPage();
-		if (rowsPerPage == null || rowsPerPage.length() == 0) {
-			rowsPerPage = "10";
-		}
-		if (util.isNumeric(rowsPerPage)) {
-			return new Integer(rowsPerPage);
-		} else {
-			return (Integer) util.getContainerValue(parentWidget, rowsPerPage);
-		}
+		return util.getRowsPerPage(annot, parentWidget);
 	}
 
 	@SuppressWarnings("unchecked")

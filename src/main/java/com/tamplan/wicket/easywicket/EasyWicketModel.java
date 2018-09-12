@@ -11,7 +11,7 @@ public class EasyWicketModel<T> implements IModel<T> {
 	private String expression;
 
 	private transient T value;
-	private transient boolean valueGet;
+	private transient boolean valueSet;
 
 	private Component component;
 
@@ -19,35 +19,34 @@ public class EasyWicketModel<T> implements IModel<T> {
 		this.expression = expression;
 		this.component = component;
 
-		valueGet = false;
+		valueSet = false;
 	}
 
+	@Override
 	public T getObject() {
-		if (valueGet) {
-			// TODO
-			// bazi durumlarda degerler degisse bile farkedilmiyor
-			// bu yuzden cachingi iptal ettim.
-			// return value;
-
+		if ( valueSet ) {
+			return value;
 		}
 
 		IEasyWicketContainer container = getContainer(component);
 
-		PropertyModel propertyModel = new PropertyModel(container, expression);
+		PropertyModel<T> propertyModel = new PropertyModel<>(container, expression);
 
-		value = (T) propertyModel.getObject();
+		value = propertyModel.getObject();
 
-		valueGet = true;
+		valueSet = true;
+
 		return value;
 	}
 
-	public void setObject(Object value) {
+	@Override
+	public void setObject(T value) {
 		IEasyWicketContainer container = getContainer(component);
 
-		PropertyModel propertyModel = new PropertyModel(container, expression);
+		PropertyModel<T> propertyModel = new PropertyModel<>(container, expression);
 		propertyModel.setObject(value);
 
-		valueGet = false;
+		valueSet = false;
 	}
 
 	private IEasyWicketContainer getContainer(Component component) {
@@ -56,16 +55,16 @@ public class EasyWicketModel<T> implements IModel<T> {
 		container = component.findParent(IEasyWicketContainer.class);
 
 		if (container == null) {
-			throw new IllegalStateException(
-					"No " + IEasyWicketContainer.class + " type of container found for component=" + component);
+			throw new IllegalStateException("No parent container found for component=" + component);
 		}
 
 		return container;
 	}
 
+	@Override
 	public void detach() {
 		value = null;
-		valueGet = false;
+		valueSet = false;
 	}
 
 }

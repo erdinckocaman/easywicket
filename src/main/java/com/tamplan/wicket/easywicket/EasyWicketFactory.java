@@ -64,7 +64,7 @@ public class EasyWicketFactory {
 
 	private EasyWicketFactory() {
 		util = EasyWicketUtil.getInstance();
-		wrapperMap = new HashMap<Class<? extends Component>, Class<? extends IEasyWicketWrapper>>();
+		wrapperMap = new HashMap<>();
 
 		registerWrapper(Label.class, LabelWrapper.class);
 		registerWrapper(Form.class, FormWrapper.class);

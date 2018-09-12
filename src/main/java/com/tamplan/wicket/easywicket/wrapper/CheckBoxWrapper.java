@@ -20,6 +20,7 @@ public class CheckBoxWrapper extends BaseWrapper {
 
 			@Override
 			protected void onConfigure() {
+				super.onConfigure();
 				util.configureComponent(this, annot.visible(), annot.enabled());
 			}
 		};

@@ -2,6 +2,8 @@ package com.tamplan.wicket.easywicket;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.wicket.Component;
@@ -41,12 +43,15 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 
 		container.initValues();
 
-		Field[] fields = component.getClass().getDeclaredFields();
-		if (fields == null || fields.length == 0) {
+		LinkedList<Field> fields = new LinkedList<>();
+		
+		getAllFields(component.getClass(), fields);
+		
+		if (fields.isEmpty() ) {
 			return;
 		}
 
-		Map<String, FieldInfo> fieldInfoMap = new HashMap<String, FieldInfo>();
+		Map<String, FieldInfo> fieldInfoMap = new HashMap<>();
 
 		for (Field field : fields) {
 			if (!field.isAnnotationPresent(EasyWicket.class)) {
@@ -62,6 +67,22 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 		instantiateWidgets(fieldInfoMap, rootComponent);
 
 		container.pack();
+	}
+	
+	private void getAllFields(Class<?> clazz, List<Field> fieldsList) {
+		Field[] fields = clazz.getDeclaredFields();
+		
+ 		if ( fields != null && fields.length > 0 ) {
+ 			for(Field f: fields) {
+ 				fieldsList.add(f);
+ 			}
+ 		}
+ 		
+ 		if (clazz.getSuperclass() != null) {
+ 			getAllFields(clazz.getSuperclass(), fieldsList);
+ 		}else {
+ 			return;
+ 		}
 	}
 
 	private FieldInfo getFieldInfo(Field field, EasyWicket annot) {
@@ -125,7 +146,8 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 	}
 
 	private String extractWidgetId(String annotationId) {
-		int index = annotationId.lastIndexOf(".");
+		int index = annotationId.lastIndexOf('.');
+		
 		if (index < 0) {
 			return annotationId;
 		}

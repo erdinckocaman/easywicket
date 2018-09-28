@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.core.util.lang.PropertyResolver;
 import org.apache.wicket.markup.html.form.FormComponent;
 
@@ -37,14 +38,22 @@ public class EasyWicketUtil implements Serializable {
 	}
 
 	public boolean hasGetterProperty(Object object, String expression) {
-		Field f = PropertyResolver.getPropertyField(expression, object);
-		if (f != null) {
-			return true;
+		try {
+			Field f = PropertyResolver.getPropertyField(expression, object);
+			if (f != null) {
+				return true;
+			}
+		}catch(WicketRuntimeException e) {
+			return false;
 		}
 
-		Method m = PropertyResolver.getPropertyGetter(expression, object);
-		if (m != null) {
-			return true;
+		try {
+			Method m = PropertyResolver.getPropertyGetter(expression, object);
+			if (m != null) {
+				return true;
+			}
+		}catch(WicketRuntimeException e) {
+			return false;
 		}
 
 		return false;

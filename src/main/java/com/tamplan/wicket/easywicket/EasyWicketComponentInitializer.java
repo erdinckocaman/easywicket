@@ -87,8 +87,8 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 
 	private FieldInfo getFieldInfo(Field field, EasyWicket annot) {
 		Class<?> type = field.getType();
-		if (logger.isInfoEnabled()) {
-			logger.info("field name={}, type={}", field.getName(), type);
+		if (logger.isDebugEnabled()) {
+			logger.debug("field name={}, type={}", field.getName(), type);
 		}
 
 		FieldInfo fi = new FieldInfo();

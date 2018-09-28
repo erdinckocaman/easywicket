@@ -14,6 +14,7 @@ public abstract class EasyPage extends WebPage implements IEventSource, IEasyWic
 
 	private static final long serialVersionUID = 1L;
 	private EventSource eventSource;
+	private WidgetContext currentWidgetContext;
 
 	public EasyPage() {
 		eventSource = new EventSource();
@@ -42,5 +43,10 @@ public abstract class EasyPage extends WebPage implements IEventSource, IEasyWic
 	}
 
 	public void setCurrentWidgetContext(WidgetContext widgetContext) {
+		currentWidgetContext = widgetContext;
+	}
+	
+	public WidgetContext getCurrentWidgetContext() {
+		return currentWidgetContext;
 	}
 }

@@ -1,18 +1,21 @@
 package com.tamplan.wicket.easywicket;
 
+import java.io.Serializable;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-public class WidgetContext {
+public class WidgetContext implements Serializable{
 
-	private Object object;
+	private static final long serialVersionUID = 1L;
+	private Serializable object;
 	private AjaxRequestTarget ajaxRequestTarget;
 
-	public void setObject(Object object) {
+	public void setObject(Serializable object) {
 		this.object = object;
 	}
 
-	public Object getObject() {
-		return object;
+	public <T> T getObject() {
+		return (T) object;
 	}
 
 	public void setAjaxRequestTarget(AjaxRequestTarget ajaxRequestTarget) {

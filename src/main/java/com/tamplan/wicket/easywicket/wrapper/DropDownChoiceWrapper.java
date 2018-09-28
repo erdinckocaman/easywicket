@@ -1,5 +1,6 @@
 package com.tamplan.wicket.easywicket.wrapper;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.wicket.Component;
@@ -23,12 +24,12 @@ public class DropDownChoiceWrapper extends BaseWrapper {
 	protected Component createInstance(String widgetId, Class<? extends Component> widgetClass, final EasyWicket annot,
 			MarkupContainer parentWidget) {
 
-		final DropDownChoice<Object> dd = (DropDownChoice<Object>) super.util.createInstance(widgetClass, widgetId);
+		final DropDownChoice<Serializable> dd = (DropDownChoice<Serializable>) super.util.createInstance(widgetClass, widgetId);
 
-		dd.setChoiceRenderer(new IChoiceRenderer<Object>() {
+		dd.setChoiceRenderer(new IChoiceRenderer<Serializable>() {
 			private static final long serialVersionUID = 1L;
 
-			public Object getDisplayValue(Object object) {
+			public Object getDisplayValue(Serializable object) {
 				if (annot.displayProperty() == null || annot.displayProperty().length() == 0) {
 					return object;
 				}
@@ -47,7 +48,7 @@ public class DropDownChoiceWrapper extends BaseWrapper {
 				}
 			}
 
-			public String getIdValue(Object object, int index) {
+			public String getIdValue(Serializable object, int index) {
 				if (annot.idProperty() == null || annot.idProperty().length() == 0) {
 					return String.valueOf(index);
 				}
@@ -73,12 +74,12 @@ public class DropDownChoiceWrapper extends BaseWrapper {
 			}
 
 			@Override
-			public Object getObject(String id, IModel<? extends List<? extends Object>> choices) {
-				List<? extends Object> _choices = choices.getObject();
+			public Serializable getObject(String id, IModel<? extends List<? extends Serializable>> choices) {
+				List<? extends Serializable> _choices = choices.getObject();
 				
 				for (int index = 0; index < _choices.size(); index++) {
 					// Get next choice
-					final Object choice = _choices.get(index);
+					final Serializable choice = _choices.get(index);
 					if (getIdValue(choice, index).equals(id)) {
 						return choice;
 					}

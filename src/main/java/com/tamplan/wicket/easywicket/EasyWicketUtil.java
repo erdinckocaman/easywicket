@@ -102,7 +102,6 @@ public class EasyWicketUtil implements Serializable {
 
 	public void callAction(Object object, String actionName) {
 		try {
-
 			Method m = object.getClass().getDeclaredMethod(actionName, (Class<?>[]) null);
 			m.setAccessible(true);
 			m.invoke(object, (Object[]) null);

@@ -8,7 +8,7 @@ public class WidgetContext implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private Serializable object;
-	private AjaxRequestTarget ajaxRequestTarget;
+	private transient AjaxRequestTarget ajaxRequestTarget;
 
 	public void setObject(Serializable object) {
 		this.object = object;

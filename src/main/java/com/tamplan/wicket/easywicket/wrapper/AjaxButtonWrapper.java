@@ -11,6 +11,8 @@ import org.apache.wicket.util.string.Strings;
 import com.tamplan.wicket.easywicket.BaseWrapper;
 import com.tamplan.wicket.easywicket.EasyWicket;
 import com.tamplan.wicket.easywicket.EasyWicketUtil;
+import com.tamplan.wicket.easywicket.IEasyWicketContainer;
+import com.tamplan.wicket.easywicket.WidgetContext;
 import com.tamplan.wicket.easywicket.web.event.AjaxFormValidatonErrorEvent;
 
 public class AjaxButtonWrapper extends BaseWrapper {
@@ -34,6 +36,13 @@ public class AjaxButtonWrapper extends BaseWrapper {
 		@Override
 		protected void onSubmit(AjaxRequestTarget target) {
 			if (!Strings.isEmpty(annot.action())) {
+				IEasyWicketContainer parentComponent = util.findContainer(this);
+				
+				WidgetContext widgetContext = new WidgetContext();
+				widgetContext.setAjaxRequestTarget(target);
+				
+				parentComponent.setCurrentWidgetContext(widgetContext);
+				
 				util.callAction(util.findContainer(this), annot.action());
 			}
 		}

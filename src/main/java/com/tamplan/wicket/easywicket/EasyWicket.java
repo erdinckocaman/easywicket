@@ -26,5 +26,5 @@ public @interface EasyWicket {
 	
 	// Drop down
 	public String displayProperty() default "";
-	public String idProperty() default "";	
+	public String idProperty() default "";
 }

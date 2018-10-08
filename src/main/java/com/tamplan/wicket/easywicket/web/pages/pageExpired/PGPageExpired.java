@@ -9,6 +9,6 @@ public class PGPageExpired extends EasyPage {
 	private static final long serialVersionUID = 1L;
 
 	public PGPageExpired() {
-		add(new BookmarkablePageLink("lnkHomePage", getApplication().getHomePage()));
+		add(new BookmarkablePageLink<Void>("lnkHomePage", getApplication().getHomePage()));
 	}
 }

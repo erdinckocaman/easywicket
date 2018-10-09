@@ -132,9 +132,9 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 	}
 
 	private void addToParent(FieldInfo fi, MarkupContainer parentWidget, MarkupContainer rootContainer) {
-		Component widget = factory.createWidget(fi.widgetId, (Class<? extends Component>) fi.field.getType(), fi.annot,
-				parentWidget);
+		Component widget = factory.createWidget(fi.widgetId, (Class<? extends Component>) fi.field.getType(), fi.annot, parentWidget);
 		parentWidget.add(widget);
+		
 		fi.widget = widget;
 
 		try {

@@ -10,6 +10,7 @@ import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.core.util.lang.PropertyResolver;
 import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.model.StringResourceModel;
 
 public class EasyWicketUtil implements Serializable {
 
@@ -157,7 +158,11 @@ public class EasyWicketUtil implements Serializable {
 	}
 
 	private void setModel(Component component, EasyWicket annot) {
-		component.setDefaultModel(new EasyWicketModel(component, annot.value()));
+		if ( annot.value().startsWith("@")) {
+			component.setDefaultModel(new StringResourceModel(annot.value().substring(1)));
+		}else {
+			component.setDefaultModel(new EasyWicketModel<Object>(component, annot.value()));
+		}
 	}
 
 	private void setRequired(FormComponent<?> component, boolean required) {

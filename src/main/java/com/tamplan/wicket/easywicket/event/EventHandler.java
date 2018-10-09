@@ -1,8 +1,9 @@
 package com.tamplan.wicket.easywicket.event;
 
-@FunctionalInterface
-public interface EventHandler<T extends IEvent<?>> {
+import java.io.Serializable;
 
+@FunctionalInterface
+public interface EventHandler<T extends IEvent<?>> extends Serializable {
 	public void handle(T event);
 
 }

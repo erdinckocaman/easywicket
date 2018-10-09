@@ -46,7 +46,7 @@ public class WebProjectTemplate1WebApp extends WebApplication {
 
 	private void initExceptionPages() {
 		getApplicationSettings().setInternalErrorPage(PGSysError.class);
-		// getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
+		//getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
 		getApplicationSettings().setPageExpiredErrorPage(PGPageExpired.class);
 	}
 

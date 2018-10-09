@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public interface IEventSource {
 
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target);
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target);
 	
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target, String method);
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target, String method);
+	
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, EventHandler<T> eventHandler);
 		
-	public void removeEventLink(Class<? extends IEvent<?>> eventType, Serializable target);
+	public <T extends IEvent<?>> void removeEventLink(Class<T> eventType, Serializable target);
 	
-	public void dispatchEvent(IEvent<?> event);
+	public <T extends IEvent<?>> void dispatchEvent(T event);
 }

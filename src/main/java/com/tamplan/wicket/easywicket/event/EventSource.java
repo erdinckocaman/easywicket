@@ -1,12 +1,14 @@
 package com.tamplan.wicket.easywicket.event;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class EventSource implements IEventSource, Serializable{
 		
 	private static final long serialVersionUID = 1L;
-	private ArrayList<EventLinkRecord> eventLinks;
+	private Map<Class<? extends IEvent<?>> , EventLinkRecord> eventLinks;
 	
 	// check if the target object has the proper event handler function 
 	// when calling addEventLink function
@@ -14,42 +16,64 @@ public class EventSource implements IEventSource, Serializable{
 	
 	// eventsource can take a parameterized type T which is source of the event
 	
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target) {
 		addEventLink(eventType, target, "processEvent");
 	}
 
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target, String method) {
-		if (eventLinks == null)
-			eventLinks = new ArrayList<>();
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target, String method) {
+		Objects.requireNonNull(eventType);
+		Objects.requireNonNull(target);
+		Objects.requireNonNull(method);
+
+		initEventLinks(eventType);
 		
-		EventLinkRecord rec = new EventLinkRecord(eventType);
+		EventLinkRecord<T> rec = eventLinks.get(eventType);
 		rec.addLink(target, method);
 		
-		eventLinks.add(rec);
 	}
 
-	public void dispatchEvent(IEvent<?> event) {
-		if (eventLinks == null)
-			return;
+	@Override
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, EventHandler<T> eventHandler) {
+		initEventLinks(eventType);
 		
-		for (int i = 0; i < eventLinks.size(); i++){
-			EventLinkRecord rec = eventLinks.get(i);
-			if (rec.getEventType().isInstance(event))
-				rec.dispatchEvent(event);
+		EventLinkRecord<T> rec = eventLinks.get(eventType);
+		rec.addLink(eventHandler);
+	}
+
+	
+	private <T extends IEvent<?>> void initEventLinks(Class<T> eventType) {
+		if (eventLinks == null) {
+			eventLinks = new HashMap<>();
+		}
+		
+		if ( !eventLinks.containsKey(eventType)) {
+			eventLinks.put(eventType, new EventLinkRecord<T>(eventType));
+		}
+	}
+	
+
+	public <T extends IEvent<?>> void dispatchEvent(T event) {
+		Objects.requireNonNull(event);
+		
+		if ( eventLinks == null ) {
+			return;
+		}
+		
+		if ( eventLinks.containsKey(event.getClass()) ) {
+			eventLinks.get(event.getClass()).dispatchEvent(event);
 		}
 	}
 
-	public void removeEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
-		if (eventLinks == null)
-			return;
+	public <T extends IEvent<?>> void removeEventLink(Class<T> eventType, Serializable target) {
+		Objects.requireNonNull(eventType);
+		Objects.requireNonNull(target);
 		
-		for (int i = 0; i < eventLinks.size(); i++){
-			EventLinkRecord rec = eventLinks.get(i);
-			
-			if (rec.getEventType() == eventType){
-				rec.removeLink(target);
-				return;
-			}
+		if ( eventLinks == null ) {
+			return;
+		}
+		
+		if ( eventLinks.containsKey(eventType) ) {
+			eventLinks.get(eventType).removeLink(target);
 		}
 	}
 }

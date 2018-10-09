@@ -9,7 +9,7 @@ public class PGSysError extends EasyPage {
 	private static final long serialVersionUID = 1L;
 
 	public PGSysError() {
-		add(new BookmarkablePageLink("lnkHomePage", getApplication().getHomePage()));
+		add(new BookmarkablePageLink<Void>("lnkHomePage", getApplication().getHomePage()));
 	}
 
 	@Override

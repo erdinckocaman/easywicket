@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.IFormSubmitter;
 
 import com.tamplan.wicket.easywicket.EasyWicket;
 import com.tamplan.wicket.easywicket.IEasyWicketWrapper;
+import com.tamplan.wicket.easywicket.event.EventHandler;
 import com.tamplan.wicket.easywicket.event.EventSource;
 import com.tamplan.wicket.easywicket.event.IEvent;
 import com.tamplan.wicket.easywicket.event.IEventSource;
@@ -30,20 +31,25 @@ public class FormWrapper implements IEasyWicketWrapper {
 
 		private static final long serialVersionUID = 1L;
 
-		public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
+		public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target) {
 			eventSource.addEventLink(eventType, target);
 		}
 
-		public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target, String method) {
-
+		public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target, String method) {
 			eventSource.addEventLink(eventType, target, method);
 		}
 
-		public void removeEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
+		@Override
+		public <T extends IEvent<?>> void addEventLink(Class<T> eventType, EventHandler<T> eventHandler) {
+			eventSource.addEventLink(eventType, eventHandler);
+
+		}
+
+		public <T extends IEvent<?>> void removeEventLink(Class<T> eventType, Serializable target) {
 			eventSource.removeEventLink(eventType, target);
 		}
 
-		public void dispatchEvent(IEvent<?> event) {
+		public <T extends IEvent<?>> void dispatchEvent(T event) {
 			eventSource.dispatchEvent(event);
 		}
 

@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.tamplan.wicket.easywicket.IEasyWicketContainer;
 import com.tamplan.wicket.easywicket.WidgetContext;
+import com.tamplan.wicket.easywicket.event.EventHandler;
 import com.tamplan.wicket.easywicket.event.EventSource;
 import com.tamplan.wicket.easywicket.event.IEvent;
 import com.tamplan.wicket.easywicket.event.IEventSource;
@@ -20,19 +21,24 @@ public abstract class EasyPage extends WebPage implements IEventSource, IEasyWic
 		eventSource = new EventSource();
 	}
 
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target) {
 		eventSource.addEventLink(eventType, target);
 	}
 
-	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target, String method) {
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target, String method) {
 		eventSource.addEventLink(eventType, target, method);
 	}
 
-	public void dispatchEvent(IEvent<?> event) {
+	@Override
+	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, EventHandler<T> eventHandler) {
+		eventSource.addEventLink(eventType, eventHandler);
+	}
+
+	public <T extends IEvent<?>> void dispatchEvent(T event) {
 		eventSource.dispatchEvent(event);
 	}
 
-	public void removeEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
+	public <T extends IEvent<?>> void removeEventLink(Class<T> eventType, Serializable target) {
 		eventSource.removeEventLink(eventType, target);
 	}
 
@@ -45,7 +51,7 @@ public abstract class EasyPage extends WebPage implements IEventSource, IEasyWic
 	public void setCurrentWidgetContext(WidgetContext widgetContext) {
 		currentWidgetContext = widgetContext;
 	}
-	
+
 	public WidgetContext getCurrentWidgetContext() {
 		return currentWidgetContext;
 	}

@@ -1,18 +1,18 @@
 package com.tamplan.wicket.easywicket.web.event;
 
+import java.util.Objects;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-public abstract class AjaxEvent extends WicketEvent {
+public abstract class WicketAjaxEvent extends WicketEvent {
 
 	private AjaxRequestTarget requestTarget;
 
-	public AjaxEvent(Component source, AjaxRequestTarget requestTarget) {
+	public WicketAjaxEvent(Component source, AjaxRequestTarget requestTarget) {
 		super(source);
-
-		if (requestTarget == null) {
-			throw new IllegalArgumentException("Ajax request is null !");
-		}
+		
+		Objects.requireNonNull(requestTarget);
 
 		this.requestTarget = requestTarget;
 	}

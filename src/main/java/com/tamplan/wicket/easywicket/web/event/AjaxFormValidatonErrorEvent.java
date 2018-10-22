@@ -4,7 +4,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
-public class AjaxFormValidatonErrorEvent extends AjaxEvent {
+public class AjaxFormValidatonErrorEvent extends WicketAjaxEvent {
 
 	private Form<?> form;
 

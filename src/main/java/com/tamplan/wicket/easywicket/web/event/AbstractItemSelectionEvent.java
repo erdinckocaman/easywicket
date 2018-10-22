@@ -3,7 +3,7 @@ package com.tamplan.wicket.easywicket.web.event;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-public abstract class AbstractItemSelectionEvent<T> extends AjaxEvent {
+public abstract class AbstractItemSelectionEvent<T> extends WicketAjaxEvent {
 
 	private T targetItem;
 

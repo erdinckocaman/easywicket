@@ -39,21 +39,16 @@ public abstract class EasyPanel extends Panel implements IEasyWicketContainer, I
 	@Override
 	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, EventHandler<T> eventHandler) {
 		eventSource.addEventLink(eventType, eventHandler);
-		
 	}
-	
 	
 	@Override
 	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target) {
 		eventSource.addEventLink(eventType, target);
-		
 	}
-	
 	
 	@Override
 	public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target, String method) {
 		eventSource.addEventLink(eventType, target, method);
-		
 	}
 	
 	@Override
@@ -67,23 +62,6 @@ public abstract class EasyPanel extends Panel implements IEasyWicketContainer, I
 		eventSource.dispatchEvent(event);
 		
 	}
-
-//	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
-//		eventSource.addEventLink(eventType, target);
-//	}
-//
-//	public void addEventLink(Class<? extends IEvent<?>> eventType, Serializable target, String method) {
-//		eventSource.addEventLink(eventType, target, method);
-//	}
-//	
-//
-//	public void dispatchEvent(IEvent<?> event) {
-//		eventSource.dispatchEvent(event);
-//	}
-//
-//	public void removeEventLink(Class<? extends IEvent<?>> eventType, Serializable target) {
-//		eventSource.removeEventLink(eventType, target);
-//	}
 
 	@Override
 	public void initValues() {

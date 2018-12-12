@@ -1,8 +1,11 @@
 package com.tamplan.wicket.easywicket.wrapper;
 
+import java.io.Serializable;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.event.Broadcast;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -13,13 +16,18 @@ import com.tamplan.wicket.easywicket.EasyWicket;
 import com.tamplan.wicket.easywicket.EasyWicketUtil;
 import com.tamplan.wicket.easywicket.IEasyWicketContainer;
 import com.tamplan.wicket.easywicket.WidgetContext;
+import com.tamplan.wicket.easywicket.event.EventHandler;
+import com.tamplan.wicket.easywicket.event.EventSource;
+import com.tamplan.wicket.easywicket.event.IEvent;
+import com.tamplan.wicket.easywicket.event.IEventSource;
 import com.tamplan.wicket.easywicket.web.event.AjaxFormValidatonErrorEvent;
+import com.tamplan.wicket.easywicket.web.event.UpdateAjaxAttributesEvent;
 
 public class AjaxButtonWrapper extends BaseWrapper {
 
 	private static final long serialVersionUID = 1L;
 
-	private static class EasyAjaxButton extends AjaxButton {
+	private static class EasyAjaxButton extends AjaxButton implements IEventSource{
 
 		private static final long serialVersionUID = 1L;
 		private EasyWicket annot;
@@ -27,10 +35,15 @@ public class AjaxButtonWrapper extends BaseWrapper {
 		static {
 			util = EasyWicketUtil.getInstance();
 		}
+		
+		private EventSource eventSource;
 
 		public EasyAjaxButton(String id, EasyWicket annot) {
 			super(id);
 			this.annot = annot;
+			
+			eventSource = new EventSource();
+
 		}
 
 		@Override
@@ -53,6 +66,52 @@ public class AjaxButtonWrapper extends BaseWrapper {
 
 			send(WebApplication.get(), Broadcast.EXACT, event);
 		}
+		
+		@Override
+		protected void onConfigure() {
+			super.onConfigure();
+			util.configureComponent(this, annot.visible(), annot.enabled());
+		}
+		
+		@Override
+		protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
+			super.updateAjaxAttributes(attributes);
+			
+			dispatchEvent(new UpdateAjaxAttributesEvent(this, attributes));
+			
+		}
+
+		@Override
+		public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target) {
+			eventSource.addEventLink(eventType, target);
+
+		}
+
+		@Override
+		public <T extends IEvent<?>> void addEventLink(Class<T> eventType, Serializable target, String method) {
+			eventSource.addEventLink(eventType, target, method);
+
+		}
+
+		@Override
+		public <T extends IEvent<?>> void addEventLink(Class<T> eventType, EventHandler<T> eventHandler) {
+			eventSource.addEventLink(eventType, eventHandler);
+
+		}
+
+		@Override
+		public <T extends IEvent<?>> void removeEventLink(Class<T> eventType, Serializable target) {
+			eventSource.removeEventLink(eventType, target);
+
+		}
+
+		@Override
+		public <T extends IEvent<?>> void dispatchEvent(T event) {
+			eventSource.dispatchEvent(event);
+
+		}
+		
+		
 
 	}
 

@@ -42,10 +42,10 @@ public abstract class EasyPage extends WebPage implements IEventSource, IEasyWic
 		eventSource.removeEventLink(eventType, target);
 	}
 
-	public void pack() {
+	public void packContainer() {
 	}
 
-	public void initValues() {
+	public void initContainer() {
 	}
 
 	public void setCurrentWidgetContext(WidgetContext widgetContext) {

@@ -41,7 +41,7 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 
 		IEasyWicketContainer container = (IEasyWicketContainer) component;
 
-		container.initValues();
+		container.initContainer();
 
 		LinkedList<Field> fields = new LinkedList<>();
 		
@@ -66,7 +66,7 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 
 		instantiateWidgets(fieldInfoMap, rootComponent);
 
-		container.pack();
+		container.packContainer();
 	}
 	
 	private void getAllFields(Class<?> clazz, List<Field> fieldsList) {
@@ -80,8 +80,6 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
  		
  		if (clazz.getSuperclass() != null) {
  			getAllFields(clazz.getSuperclass(), fieldsList);
- 		}else {
- 			return;
  		}
 	}
 

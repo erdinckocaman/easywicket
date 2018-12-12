@@ -39,12 +39,12 @@ public class PGNewUser extends WebPage implements IEasyWicketContainer {
 	private Country selectedCountry;
 	private String name, surname;
 
-	public void initValues() {
+	public void initContainer() {
 		countryList = Arrays.asList(Country.values());
 		selectedCountry = countryList.get(0);
 	}
 
-	public void pack() {
+	public void packContainer() {
 	}
 
 	public void setCurrentWidgetContext(WidgetContext widgetContext) {

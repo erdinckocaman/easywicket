@@ -57,7 +57,7 @@ public class PGHomePage extends EasyPage implements IEasyWicketContainer {
 		return selected;
 	}
 
-	public void pack() {
+	public void packContainer() {
 		add(new FeedbackPanel("feedbackPanel"));
 	}
 
@@ -68,7 +68,7 @@ public class PGHomePage extends EasyPage implements IEasyWicketContainer {
 	public void setCurrentWidgetContext(WidgetContext widgetContext) {
 	}
 
-	public void initValues() {
+	public void initContainer() {
 	}
 
 }

@@ -17,7 +17,10 @@ public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 		util = EasyWicketUtil.getInstance();
 	}
 
-	public final Component create(String widgetId, Class<? extends Component> widgetClass, EasyWicket annot,
+	public final Component create(
+			String widgetId, 
+			Class<? extends Component> widgetClass, 
+			EasyWicket annot,
 			MarkupContainer parentWidget) {
 		
 		Component component = createInstance(widgetId, widgetClass, annot, parentWidget);
@@ -27,8 +30,11 @@ public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 		return component;
 	}
 
-	protected abstract Component createInstance(String widgetId, Class<? extends Component> widgetClass,
-			EasyWicket annot, MarkupContainer parentWidget);
+	protected abstract Component createInstance(
+			String widgetId, 
+			Class<? extends Component> widgetClass,
+			EasyWicket annot, 
+			MarkupContainer parentWidget);
 
 	protected List<Object> getList(EasyWicket annot, MarkupContainer parentWidget) {
 		return util.getContainerValue(parentWidget, annot.list());

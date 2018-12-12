@@ -64,11 +64,11 @@ public abstract class EasyPanel extends Panel implements IEasyWicketContainer, I
 	}
 
 	@Override
-	public void initValues() {
+	public void initContainer() {
 	}
 
 	@Override
-	public void pack() {
+	public void packContainer() {
 	}
 	
 	@Override

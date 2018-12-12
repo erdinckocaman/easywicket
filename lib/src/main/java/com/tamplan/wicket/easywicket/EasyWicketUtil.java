@@ -184,7 +184,7 @@ public class EasyWicketUtil implements Serializable {
 
 	private void setEnable(Component component, String isEnabledStr) {
 		IEasyWicketContainer container = findContainer(component);
-		Boolean enabled = (Boolean) getValue(container, isEnabledStr);
+		Boolean enabled = getValue(container, isEnabledStr);
 		component.setEnabled(enabled);
 	}
 

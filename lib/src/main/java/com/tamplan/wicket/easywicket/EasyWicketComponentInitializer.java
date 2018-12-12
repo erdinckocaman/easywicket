@@ -58,7 +58,10 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 				continue;
 			}
 			EasyWicket annot = field.getAnnotation(EasyWicket.class);
+			
 			FieldInfo fi = getFieldInfo(field, annot);
+			
+			//might have overlapping ids if there are inner easy wicket container objects
 			fieldInfoMap.put(fi.annot.id(), fi);
 		}
 
@@ -85,11 +88,13 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 
 	private FieldInfo getFieldInfo(Field field, EasyWicket annot) {
 		Class<?> type = field.getType();
+		
 		if (logger.isDebugEnabled()) {
 			logger.debug("field name={}, type={}", field.getName(), type);
 		}
 
 		FieldInfo fi = new FieldInfo();
+		
 		fi.annot = annot;
 		fi.field = field;
 		fi.widgetId = extractWidgetId(annot.id());
@@ -131,6 +136,7 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 
 	private void addToParent(FieldInfo fi, MarkupContainer parentWidget, MarkupContainer rootContainer) {
 		Component widget = factory.createWidget(fi.widgetId, (Class<? extends Component>) fi.field.getType(), fi.annot, parentWidget);
+		
 		parentWidget.add(widget);
 		
 		fi.widget = widget;

@@ -30,9 +30,8 @@ public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 	protected abstract Component createInstance(String widgetId, Class<? extends Component> widgetClass,
 			EasyWicket annot, MarkupContainer parentWidget);
 
-	@SuppressWarnings("unchecked")
-	protected List getList(EasyWicket annot, MarkupContainer parentWidget) {
-		return (List) util.getContainerValue(parentWidget, annot.list());
+	protected List<Object> getList(EasyWicket annot, MarkupContainer parentWidget) {
+		return util.getContainerValue(parentWidget, annot.list());
 
 	}
 

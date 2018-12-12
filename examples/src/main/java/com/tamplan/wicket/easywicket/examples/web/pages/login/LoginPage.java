@@ -2,8 +2,8 @@ package com.tamplan.wicket.easywicket.examples.web.pages.login;
 
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
-import com.tamplan.wicket.easywicket.web.common.EasyPage;
-import com.tamplan.wicket.easywicket.web.pages.login.event.LoginEvent;
+import com.tamplan.wicket.easywicket.common.EasyPage;
+import com.tamplan.wicket.easywicket.examples.web.pages.login.event.LoginEvent;
 
 public class LoginPage extends EasyPage {
 

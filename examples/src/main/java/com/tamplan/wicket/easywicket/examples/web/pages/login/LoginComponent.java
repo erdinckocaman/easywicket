@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tamplan.wicket.easywicket.EasyWicket;
-import com.tamplan.wicket.easywicket.web.common.EasyPanel;
-import com.tamplan.wicket.easywicket.web.pages.login.event.LoginEvent;
+import com.tamplan.wicket.easywicket.common.EasyPanel;
+import com.tamplan.wicket.easywicket.examples.web.pages.login.event.LoginEvent;
 
 public class LoginComponent extends EasyPanel {
 

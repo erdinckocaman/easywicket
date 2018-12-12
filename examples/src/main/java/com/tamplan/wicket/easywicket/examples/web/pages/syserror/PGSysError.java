@@ -2,7 +2,7 @@ package com.tamplan.wicket.easywicket.examples.web.pages.syserror;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
-import com.tamplan.wicket.easywicket.web.common.EasyPage;
+import com.tamplan.wicket.easywicket.common.EasyPage;
 
 public class PGSysError extends EasyPage {
 

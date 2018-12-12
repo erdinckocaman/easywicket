@@ -1,4 +1,4 @@
-package com.tamplan.wicket.easywicket.web.common;
+package com.tamplan.wicket.easywicket.common;
 
 import java.io.Serializable;
 

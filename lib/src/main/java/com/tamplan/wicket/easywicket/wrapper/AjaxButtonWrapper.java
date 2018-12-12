@@ -20,8 +20,8 @@ import com.tamplan.wicket.easywicket.event.EventHandler;
 import com.tamplan.wicket.easywicket.event.EventSource;
 import com.tamplan.wicket.easywicket.event.IEvent;
 import com.tamplan.wicket.easywicket.event.IEventSource;
-import com.tamplan.wicket.easywicket.web.event.AjaxFormValidatonErrorEvent;
-import com.tamplan.wicket.easywicket.web.event.UpdateAjaxAttributesEvent;
+import com.tamplan.wicket.easywicket.event.impl.AjaxFormValidatonErrorEvent;
+import com.tamplan.wicket.easywicket.event.impl.UpdateAjaxAttributesEvent;
 
 public class AjaxButtonWrapper extends BaseWrapper {
 

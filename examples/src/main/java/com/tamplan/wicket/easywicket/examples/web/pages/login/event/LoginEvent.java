@@ -2,7 +2,7 @@ package com.tamplan.wicket.easywicket.examples.web.pages.login.event;
 
 import org.apache.wicket.Component;
 
-import com.tamplan.wicket.easywicket.web.event.WicketEvent;
+import com.tamplan.wicket.easywicket.event.WicketEvent;
 
 public class LoginEvent extends WicketEvent {
 

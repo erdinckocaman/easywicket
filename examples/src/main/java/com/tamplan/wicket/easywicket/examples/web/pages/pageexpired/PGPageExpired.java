@@ -2,7 +2,7 @@ package com.tamplan.wicket.easywicket.examples.web.pages.pageexpired;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
-import com.tamplan.wicket.easywicket.web.common.EasyPage;
+import com.tamplan.wicket.easywicket.common.EasyPage;
 
 public class PGPageExpired extends EasyPage {
 

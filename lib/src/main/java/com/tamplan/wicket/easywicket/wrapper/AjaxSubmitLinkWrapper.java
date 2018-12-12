@@ -10,7 +10,7 @@ import org.apache.wicket.util.string.Strings;
 
 import com.tamplan.wicket.easywicket.BaseWrapper;
 import com.tamplan.wicket.easywicket.EasyWicket;
-import com.tamplan.wicket.easywicket.web.event.AjaxFormValidatonErrorEvent;
+import com.tamplan.wicket.easywicket.event.impl.AjaxFormValidatonErrorEvent;
 
 public class AjaxSubmitLinkWrapper extends BaseWrapper {
 

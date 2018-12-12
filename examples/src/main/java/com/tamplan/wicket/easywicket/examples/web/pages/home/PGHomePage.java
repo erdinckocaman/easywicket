@@ -13,7 +13,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import com.tamplan.wicket.easywicket.EasyWicket;
 import com.tamplan.wicket.easywicket.IEasyWicketContainer;
 import com.tamplan.wicket.easywicket.WidgetContext;
-import com.tamplan.wicket.easywicket.web.common.EasyPage;
+import com.tamplan.wicket.easywicket.common.EasyPage;
 
 public class PGHomePage extends EasyPage implements IEasyWicketContainer {
 

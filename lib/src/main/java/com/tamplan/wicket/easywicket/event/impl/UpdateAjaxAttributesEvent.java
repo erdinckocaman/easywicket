@@ -1,9 +1,11 @@
-package com.tamplan.wicket.easywicket.web.event;
+package com.tamplan.wicket.easywicket.event.impl;
 
 import java.util.Objects;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
+
+import com.tamplan.wicket.easywicket.event.WicketEvent;
 
 public class UpdateAjaxAttributesEvent extends WicketEvent {
 

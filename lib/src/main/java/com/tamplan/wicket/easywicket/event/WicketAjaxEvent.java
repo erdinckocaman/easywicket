@@ -1,4 +1,4 @@
-package com.tamplan.wicket.easywicket.web.event;
+package com.tamplan.wicket.easywicket.event;
 
 import java.util.Objects;
 

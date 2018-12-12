@@ -13,9 +13,9 @@ import com.tamplan.wicket.easywicket.event.EventHandler;
 import com.tamplan.wicket.easywicket.event.EventSource;
 import com.tamplan.wicket.easywicket.event.IEvent;
 import com.tamplan.wicket.easywicket.event.IEventSource;
-import com.tamplan.wicket.easywicket.web.event.FormAfterProcessEvent;
-import com.tamplan.wicket.easywicket.web.event.FormBeforeProcessEvent;
-import com.tamplan.wicket.easywicket.web.event.FormOnValidateEvent;
+import com.tamplan.wicket.easywicket.event.impl.FormAfterProcessEvent;
+import com.tamplan.wicket.easywicket.event.impl.FormBeforeProcessEvent;
+import com.tamplan.wicket.easywicket.event.impl.FormOnValidateEvent;
 
 public class FormWrapper implements IEasyWicketWrapper {
 

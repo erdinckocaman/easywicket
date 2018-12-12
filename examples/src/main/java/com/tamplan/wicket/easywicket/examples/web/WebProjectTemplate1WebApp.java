@@ -8,11 +8,11 @@ import org.apache.wicket.request.Response;
 //import org.apache.wicket.settings.IExceptionSettings;
 
 import com.tamplan.wicket.easywicket.EasyWicketComponentInitializer;
-import com.tamplan.wicket.easywicket.web.pages.home.PGHomePage;
-import com.tamplan.wicket.easywicket.web.pages.login.LoginPage;
-import com.tamplan.wicket.easywicket.web.pages.newuser.PGNewUser;
-import com.tamplan.wicket.easywicket.web.pages.pageexpired.PGPageExpired;
-import com.tamplan.wicket.easywicket.web.pages.syserror.PGSysError;
+import com.tamplan.wicket.easywicket.examples.web.pages.home.PGHomePage;
+import com.tamplan.wicket.easywicket.examples.web.pages.login.LoginPage;
+import com.tamplan.wicket.easywicket.examples.web.pages.newuser.PGNewUser;
+import com.tamplan.wicket.easywicket.examples.web.pages.pageexpired.PGPageExpired;
+import com.tamplan.wicket.easywicket.examples.web.pages.syserror.PGSysError;
 
 public class WebProjectTemplate1WebApp extends WebApplication {
 

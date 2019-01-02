@@ -8,6 +8,7 @@ import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
+import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxButton;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
@@ -43,6 +44,7 @@ import com.tamplan.wicket.easywicket.wrapper.DropDownChoiceWrapper;
 import com.tamplan.wicket.easywicket.wrapper.FileUploadFieldWrapper;
 import com.tamplan.wicket.easywicket.wrapper.FormWrapper;
 import com.tamplan.wicket.easywicket.wrapper.ImageButtonWrapper;
+import com.tamplan.wicket.easywicket.wrapper.IndicatingAjaxButtonWrapper;
 import com.tamplan.wicket.easywicket.wrapper.LabelWrapper;
 import com.tamplan.wicket.easywicket.wrapper.LinkWrapper;
 import com.tamplan.wicket.easywicket.wrapper.ListChoiceWrapper;
@@ -93,6 +95,9 @@ public class EasyWicketFactory {
 		registerWrapper(WebMarkupContainer.class, WebMarkupContainerWrapper.class);
 		registerWrapper(FileUploadField.class, FileUploadFieldWrapper.class);
 		registerWrapper(AjaxSubmitLink.class, AjaxSubmitLinkWrapper.class);
+		
+		registerWrapper(IndicatingAjaxButton.class, IndicatingAjaxButtonWrapper.class);
+
 	}
 
 	public static EasyWicketFactory getInstance() {

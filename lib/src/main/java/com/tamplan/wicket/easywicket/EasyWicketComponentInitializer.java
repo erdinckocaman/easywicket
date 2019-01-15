@@ -120,7 +120,7 @@ public class EasyWicketComponentInitializer implements IComponentInitializationL
 		} else {
 			FieldInfo parentFi = fieldInfoMap.get(parentId);
 			if (parentFi == null) {
-				throw new IllegalStateException("no parent found for annot id=" + fi.annot.id());
+				throw new IllegalStateException("no parent found for annot id=" + fi.annot.id() + " parent id=" + parentId);
 			}
 
 			if (parentFi.widget == null) {

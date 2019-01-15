@@ -24,7 +24,7 @@ public class DropDownChoiceWrapper extends BaseWrapper {
 
 		dd.setChoiceRenderer(new EasyChoiceRenderer(annot, dd));
 
-		dd.setChoices(new EasyWicketModel(dd, annot.list()));
+		dd.setChoices(new EasyWicketModel<>(dd, annot.list()));
 
 		return dd;
 	}

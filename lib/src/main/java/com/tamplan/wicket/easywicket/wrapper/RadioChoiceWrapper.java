@@ -23,7 +23,7 @@ public class RadioChoiceWrapper extends BaseWrapper {
 		
 		radioChoice.setChoiceRenderer(new EasyChoiceRenderer(annot, radioChoice));
 		
-		radioChoice.setChoices(new EasyWicketModel(radioChoice, annot.list()));
+		radioChoice.setChoices(new EasyWicketModel<>(radioChoice, annot.list()));
 		
 		return radioChoice;
 	}

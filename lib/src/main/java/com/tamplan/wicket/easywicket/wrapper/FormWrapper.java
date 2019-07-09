@@ -68,6 +68,15 @@ public class FormWrapper implements IEasyWicketWrapper {
 			}
 		}
 
+		@Override
+		protected void onError() {
+			super.onError();
+
+			System.out.println("ON ERROR !!!");
+
+
+
+		}
 	}
 
 	public Component create(String widgetId, Class<? extends Component> widgetClass, EasyWicket annot,

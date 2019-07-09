@@ -153,8 +153,8 @@ public class EasyWicketUtil implements Serializable {
 	}
 
 	private void setAjaxEnabled(Component component, boolean ajaxEnabled) {
-		component.setOutputMarkupId(true);
-		component.setOutputMarkupPlaceholderTag(true);
+		component.setOutputMarkupId(ajaxEnabled);
+		component.setOutputMarkupPlaceholderTag(ajaxEnabled);
 	}
 
 	private void setModel(Component component, EasyWicket annot) {
@@ -190,7 +190,21 @@ public class EasyWicketUtil implements Serializable {
 
 	private void setVisibility(Component component, String isVisibleStr) {
 		IEasyWicketContainer container = findContainer(component);
+
+
+		boolean negate = false;
+
+		if ( isVisibleStr.startsWith("!") ) {
+			negate = true;
+			isVisibleStr = isVisibleStr.substring(1);
+		}
+
 		Boolean visible = getValue(container, isVisibleStr);
+
+		if ( negate ) {
+			visible = !visible;
+		}
+
 		component.setVisible(visible);
 	}
 }

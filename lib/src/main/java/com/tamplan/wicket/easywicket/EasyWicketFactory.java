@@ -1,8 +1,6 @@
 package com.tamplan.wicket.easywicket;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.tamplan.wicket.easywicket.wrapper.*;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -10,51 +8,14 @@ import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxButton;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.Check;
-import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.CheckGroup;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.ImageButton;
-import org.apache.wicket.markup.html.form.ListChoice;
-import org.apache.wicket.markup.html.form.PasswordTextField;
-import org.apache.wicket.markup.html.form.Radio;
-import org.apache.wicket.markup.html.form.RadioChoice;
-import org.apache.wicket.markup.html.form.RadioGroup;
-import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.link.Link;
 
-import com.tamplan.wicket.easywicket.wrapper.AjaxButtonWrapper;
-import com.tamplan.wicket.easywicket.wrapper.AjaxLinkWrapper;
-import com.tamplan.wicket.easywicket.wrapper.AjaxSubmitLinkWrapper;
-import com.tamplan.wicket.easywicket.wrapper.ButtonWrapper;
-import com.tamplan.wicket.easywicket.wrapper.CheckBoxWrapper;
-import com.tamplan.wicket.easywicket.wrapper.CheckGroupWrapper;
-import com.tamplan.wicket.easywicket.wrapper.CheckWrapper;
-import com.tamplan.wicket.easywicket.wrapper.DataTableWrapper;
-import com.tamplan.wicket.easywicket.wrapper.DateTextFieldWrapper;
-import com.tamplan.wicket.easywicket.wrapper.DropDownChoiceWrapper;
-import com.tamplan.wicket.easywicket.wrapper.FileUploadFieldWrapper;
-import com.tamplan.wicket.easywicket.wrapper.FormWrapper;
-import com.tamplan.wicket.easywicket.wrapper.ImageButtonWrapper;
-import com.tamplan.wicket.easywicket.wrapper.IndicatingAjaxButtonWrapper;
-import com.tamplan.wicket.easywicket.wrapper.LabelWrapper;
-import com.tamplan.wicket.easywicket.wrapper.LinkWrapper;
-import com.tamplan.wicket.easywicket.wrapper.ListChoiceWrapper;
-import com.tamplan.wicket.easywicket.wrapper.PasswordTextFieldWrapper;
-import com.tamplan.wicket.easywicket.wrapper.RadioChoiceWrapper;
-import com.tamplan.wicket.easywicket.wrapper.RadioGroupWrapper;
-import com.tamplan.wicket.easywicket.wrapper.RadioWrapper;
-import com.tamplan.wicket.easywicket.wrapper.TextAreaWrapper;
-import com.tamplan.wicket.easywicket.wrapper.TextFieldWrapper;
-import com.tamplan.wicket.easywicket.wrapper.WebMarkupContainerWrapper;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EasyWicketFactory {
 
@@ -73,9 +34,6 @@ public class EasyWicketFactory {
 		registerWrapper(Button.class, ButtonWrapper.class);
 		registerWrapper(TextField.class, TextFieldWrapper.class);
 		registerWrapper(PasswordTextField.class, PasswordTextFieldWrapper.class);
-
-		registerWrapper(DataTable.class, DataTableWrapper.class);
-		registerWrapper(DefaultDataTable.class, DataTableWrapper.class);
 
 		registerWrapper(DropDownChoice.class, DropDownChoiceWrapper.class);
 		registerWrapper(Link.class, LinkWrapper.class);

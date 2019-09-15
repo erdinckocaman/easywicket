@@ -20,10 +20,6 @@ public @interface EasyWicket {
 	public String visible() default "";
 	public boolean ajaxEnabled() default false;
 	
-	// Data table
-	public String rowsPerPage() default  "10";
-	public String columns() default "";
-	
 	// Drop down
 	public String displayProperty() default "";
 	public String idProperty() default "";

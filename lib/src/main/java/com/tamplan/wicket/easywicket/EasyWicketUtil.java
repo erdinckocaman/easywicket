@@ -1,16 +1,15 @@
 package com.tamplan.wicket.easywicket;
 
-import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import org.apache.wicket.Component;
-import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.core.util.lang.PropertyResolver;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.StringResourceModel;
+
+import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class EasyWicketUtil implements Serializable {
 
@@ -114,19 +113,7 @@ public class EasyWicketUtil implements Serializable {
 	public IEasyWicketContainer findContainer(Component component) {
 		return component.findParent(IEasyWicketContainer.class);
 	}
-	
-	public int getRowsPerPage(EasyWicket annot, MarkupContainer parentWidget) {
-		String rowsPerPage = annot.rowsPerPage();
-		
-		if (rowsPerPage == null || rowsPerPage.length() == 0) {
-			rowsPerPage = "10";
-		}
-		if (isNumeric(rowsPerPage)) {
-			return new Integer(rowsPerPage);
-		} else {
-			return (Integer) getContainerValue(parentWidget, rowsPerPage);
-		}
-	}
+
 
 	private boolean isNumeric(String str) {
 		if (str == null) {

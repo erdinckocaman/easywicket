@@ -1,11 +1,10 @@
 package com.tamplan.wicket.easywicket;
 
-import java.io.Serializable;
-import java.util.List;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+
+import java.io.Serializable;
+import java.util.List;
 
 public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 
@@ -41,13 +40,6 @@ public abstract class BaseWrapper implements IEasyWicketWrapper, Serializable {
 
 	}
 
-	protected int getRowsPerPage(EasyWicket annot, MarkupContainer parentWidget) {
-		return util.getRowsPerPage(annot, parentWidget);
-	}
 
-	@SuppressWarnings("unchecked")
-	protected List<IColumn> getColumnList(EasyWicket annot, MarkupContainer parentWidget) {
-		return (List<IColumn>) util.getContainerValue(parentWidget, annot.columns());
-	}
 
 }

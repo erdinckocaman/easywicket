@@ -1,16 +1,12 @@
 package com.tamplan.wicket.easywicket.wrapper;
 
+import com.tamplan.wicket.easywicket.BaseWrapper;
+import com.tamplan.wicket.easywicket.EasyWicket;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.event.Broadcast;
-import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.string.Strings;
-
-import com.tamplan.wicket.easywicket.BaseWrapper;
-import com.tamplan.wicket.easywicket.EasyWicket;
-import com.tamplan.wicket.easywicket.event.impl.AjaxFormValidatonErrorEvent;
 
 public class AjaxSubmitLinkWrapper extends BaseWrapper {
 
@@ -33,9 +29,6 @@ public class AjaxSubmitLinkWrapper extends BaseWrapper {
 
 			@Override
 			protected void onError(AjaxRequestTarget target) {
-				AjaxFormValidatonErrorEvent event = new AjaxFormValidatonErrorEvent(this, target);
-
-				send(WebApplication.get(), Broadcast.EXACT, event);
 			}
 		};
 	}

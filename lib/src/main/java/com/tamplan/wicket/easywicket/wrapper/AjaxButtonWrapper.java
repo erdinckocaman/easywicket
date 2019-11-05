@@ -62,8 +62,7 @@ public class AjaxButtonWrapper extends BaseWrapper {
 
 		@Override
 		protected void onError(AjaxRequestTarget target) {
-			AjaxFormValidatonErrorEvent event = new AjaxFormValidatonErrorEvent(this, target);
-			send(WebApplication.get(), Broadcast.EXACT, event);
+
 		}
 		
 		@Override

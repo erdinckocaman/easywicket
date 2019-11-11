@@ -1,10 +1,15 @@
 package com.tamplan.wicket.easywicket.components;
 
+import com.tamplan.wicket.easywicket.EasyWicket;
+import com.tamplan.wicket.easywicket.EasyWicketUtil;
+import com.tamplan.wicket.easywicket.IEasyWicket;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.form.TextArea;
 
-public class EasyTextArea<T> extends TextArea<T>{
+public class EasyTextArea<T> extends TextArea<T> implements IEasyWicket {
 
     private boolean inputTrimmed;
+    private EasyWicket annot;
 
     public EasyTextArea(String id) {
         super(id);
@@ -21,5 +26,18 @@ public class EasyTextArea<T> extends TextArea<T>{
     @Override
     protected boolean shouldTrimInput() {
         return inputTrimmed;
+    }
+
+    @Override
+    public void initComponent(EasyWicket annot, MarkupContainer parentWidget) {
+        this.annot = annot;
+    }
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+
+        EasyWicketUtil.getInstance().configureComponent(this,
+                annot.visible(), annot.enabled());
     }
 }

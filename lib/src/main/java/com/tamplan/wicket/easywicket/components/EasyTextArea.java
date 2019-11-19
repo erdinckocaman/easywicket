@@ -31,6 +31,8 @@ public class EasyTextArea<T> extends TextArea<T> implements IEasyWicket {
     @Override
     public void initComponent(EasyWicket annot, MarkupContainer parentWidget) {
         this.annot = annot;
+
+        EasyWicketUtil.getInstance().initComponentWithAnnot(this, annot);
     }
 
     @Override

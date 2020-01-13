@@ -102,7 +102,8 @@ public class EasyWicketUtil implements Serializable {
 
 	public void callAction(Object object, String actionName) {
 		try {
-			Method m = object.getClass().getDeclaredMethod(actionName, (Class<?>[]) null);
+			// TODO: only search methods in classes deriving from EasyContainer
+			Method m = object.getClass().getMethod(actionName, (Class<?>[]) null);
 			m.setAccessible(true);
 			m.invoke(object, (Object[]) null);
 		} catch (Exception e) {

@@ -33,6 +33,12 @@ public class AjaxLinkWrapper extends BaseWrapper {
 					util.callAction(util.findContainer(this), annot.action());
 				}
 			}
+
+			@Override
+			protected void onConfigure() {
+				super.onConfigure();
+				util.configureComponent(this, annot.visible(), annot.enabled());
+			}
 		};
 	}
 }
